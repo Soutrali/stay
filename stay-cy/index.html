@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>stay.cy — coming soon</title>
+<meta name="description" content="Small, quiet cabin stays in the forests of Cyprus. Opening soon.">
+<meta property="og:title" content="stay.cy — coming soon">
+<meta property="og:description" content="Small, quiet cabin stays in the forests of Cyprus.">
+<meta property="og:image" content="hero-small.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌲</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: #0b0f0e;
+    color: #f4f2ed;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  /* Background photo */
+  .bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+  }
+  .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 55%;
+    filter: saturate(0.85) brightness(0.9);
+    transform: scale(1.04);
+    animation: drift 28s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    from { transform: scale(1.04) translate3d(0,0,0); }
+    to   { transform: scale(1.10) translate3d(0,-1.2%,0); }
+  }
+  /* Darkening: vignette + bottom gradient so text always reads */
+  .bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120% 90% at 50% 40%, rgba(6,10,9,0.10) 0%, rgba(6,10,9,0.55) 60%, rgba(6,10,9,0.85) 100%),
+      linear-gradient(to bottom, rgba(6,10,9,0.55) 0%, rgba(6,10,9,0.15) 35%, rgba(6,10,9,0.80) 100%);
+  }
+
+  /* Page frame */
+  .wrap {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(22px, 4vw, 48px);
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    animation: rise 1s ease both;
+  }
+  .brand {
+    font-family: Fraunces, Georgia, serif;
+    font-size: clamp(20px, 2.4vw, 26px);
+    letter-spacing: -0.01em;
+    font-weight: 400;
+  }
+  .brand span { color: #9fc3a4; }
+  .pill {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 7px 12px;
+    border: 1px solid rgba(244,242,237,0.28);
+    border-radius: 999px;
+    color: rgba(244,242,237,0.85);
+    backdrop-filter: blur(6px);
+    white-space: nowrap;
+  }
+
+  main {
+    max-width: 780px;
+    margin-bottom: clamp(28px, 7vh, 90px);
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #a9c7ad;
+    margin: 0 0 18px;
+    animation: rise 1s ease 0.08s both;
+  }
+  h1 {
+    font-family: Fraunces, Georgia, serif;
+    font-weight: 300;
+    font-size: clamp(38px, 7.4vw, 84px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    margin: 0 0 20px;
+    text-wrap: balance;
+    animation: rise 1s ease 0.16s both;
+  }
+  h1 em {
+    font-style: italic;
+    color: #d8e4d6;
+  }
+  p.lede {
+    font-size: clamp(15px, 1.6vw, 18px);
+    line-height: 1.6;
+    color: rgba(244,242,237,0.78);
+    max-width: 46ch;
+    margin: 0 0 30px;
+    animation: rise 1s ease 0.24s both;
+  }
+
+  form {
+    display: flex;
+    gap: 10px;
+    max-width: 460px;
+    animation: rise 1s ease 0.32s both;
+  }
+  input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 16px;
+    font: inherit;
+    font-size: 15px;
+    color: #f4f2ed;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(244,242,237,0.22);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    transition: border-color .2s, background .2s;
+  }
+  input[type="email"]::placeholder { color: rgba(244,242,237,0.45); }
+  input[type="email"]:focus {
+    outline: none;
+    border-color: #9fc3a4;
+    background: rgba(255,255,255,0.11);
+  }
+  button {
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 22px;
+    border: 0;
+    border-radius: 10px;
+    background: #e9efe6;
+    color: #14201a;
+    cursor: pointer;
+    transition: transform .15s ease, background .2s;
+    white-space: nowrap;
+  }
+  button:hover { background: #fff; transform: translateY(-1px); }
+  button:active { transform: translateY(0); }
+
+  .note {
+    margin: 14px 0 0;
+    font-size: 12.5px;
+    color: rgba(244,242,237,0.55);
+    animation: rise 1s ease 0.4s both;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    font-size: 12.5px;
+    color: rgba(244,242,237,0.6);
+    animation: rise 1s ease 0.48s both;
+  }
+  footer a { color: rgba(244,242,237,0.85); text-decoration: none; border-bottom: 1px solid rgba(244,242,237,0.25); }
+  footer a:hover { border-color: #9fc3a4; color: #fff; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bg img { animation: none; }
+    * { animation-duration: .001s !important; }
+  }
+  @media (max-width: 560px) {
+    body { overflow: auto; }
+    form { flex-direction: column; }
+    button { width: 100%; }
+    footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <img src="hero.jpg" alt="" fetchpriority="high">
+</div>
+
+<div class="wrap">
+  <header>
+    <div class="brand">stay<span>.cy</span></div>
+    <div class="pill">Coming soon</div>
+  </header>
+
+  <main>
+    <p class="eyebrow">Cyprus · cabins in the pines</p>
+    <h1>A cabin in the pines,<br><em>nothing else.</em></h1>
+    <p class="lede">
+      Small, quiet stays in the forests of Cyprus. Wood, fire, cold mornings,
+      no reception desk. We're building the first one now.
+    </p>
+
+    <form id="signup" action="mailto:hello@stay.cy" method="post" enctype="text/plain">
+      <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+      <button type="submit">Be first to know</button>
+    </form>
+    <p class="note">One email when we open. Nothing else, ever.</p>
+  </main>
+
+  <footer>
+    <div>© <span id="year">2026</span> stay.cy</div>
+    <div><a href="mailto:hello@stay.cy">hello@stay.cy</a></div>
+  </footer>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mailto fallback: swap the action for a real endpoint (Formspree / Buttondown / Mailchimp)
+  document.getElementById('signup').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = this.email.value.trim();
+    if (!email) return;
+    window.location.href = 'mailto:hello@stay.cy?subject=' +
+      encodeURIComponent('stay.cy — notify me') +
+      '&body=' + encodeURIComponent('Please add me to the list: ' + email);
+    this.reset();
+  });
+</script>
+</body>
+</html>
